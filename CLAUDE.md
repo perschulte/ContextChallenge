@@ -4,15 +4,24 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Static website deployed on Vercel. Auto-deploys on every push to main.
+Astro website deployed on Vercel. Auto-deploys on every push.
 
 **Live URL:** https://context-challenge-hjy7enx1w-pers-projects-6456b747.vercel.app
 
+## Commands
+
+```bash
+npm run dev      # Start dev server (localhost:4321)
+npm run build    # Build for production
+npm run preview  # Preview production build
+```
+
 ## Architecture
 
-- `index.html` - Main landing page (standalone HTML with embedded CSS)
-- `vercel.json` - Vercel deployment configuration (static site, no build step)
+- `src/pages/` - Astro pages (file-based routing)
+- `astro.config.mjs` - Astro configuration with Vercel adapter
+- `vercel.json` - Vercel deployment settings
 
 ## Deployment
 
-Push to main branch triggers automatic Vercel deployment. No build command required - files are served directly.
+Push to main triggers automatic Vercel deployment.
