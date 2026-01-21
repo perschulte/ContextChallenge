@@ -4,19 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a new Python project. No code or configuration has been added yet.
+Static website deployed on Vercel. Auto-deploys on every push to main.
 
-## Inferred Tooling (from .gitignore)
+**Live URL:** https://context-challenge-hjy7enx1w-pers-projects-6456b747.vercel.app
 
-The gitignore suggests this project may use:
-- **Testing**: pytest (`.pytest_cache/` ignored)
-- **Linting**: Ruff (`.ruff_cache/` ignored)
-- **Type checking**: mypy (`.mypy_cache/` ignored)
-- **Package management**: pip, poetry, pdm, uv, or pipenv
+## Architecture
 
-## Getting Started
+- `index.html` - Main landing page (standalone HTML with embedded CSS)
+- `vercel.json` - Vercel deployment configuration (static site, no build step)
 
-When setting up this project, add:
-- `pyproject.toml` or `requirements.txt` for dependencies
-- A source directory structure (e.g., `src/` or package name)
-- Test directory (e.g., `tests/`)
+## Deployment
+
+Push to main branch triggers automatic Vercel deployment. No build command required - files are served directly.
