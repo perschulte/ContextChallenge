@@ -1,18 +1,64 @@
 ---
-// ContextChallenge - Landing Page
+// Context Challenge - Baustein UI
 ---
 
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ContextChallenge</title>
+    <title>Context Challenge</title>
 </head>
 <body>
     <div class="container">
-        <h1>ContextChallenge</h1>
-        <p>App ist live mit Astro!</p>
+        <h1>Context Challenge</h1>
+
+        <section>
+            <h2>Verfügbare Bausteine</h2>
+            <div id="blocks">
+                <button class="block" data-text="Du bist ein hilfreicher Assistent.">Hilfreicher Assistent</button>
+                <button class="block" data-text="Antworte kurz und präzise.">Kurze Antworten</button>
+                <button class="block" data-text="Erkläre es wie für ein Kind.">Einfache Erklärung</button>
+                <button class="block" data-text="Gib Beispiele.">Mit Beispielen</button>
+            </div>
+        </section>
+
+        <section>
+            <h2>Dein Context</h2>
+            <div id="context-display">
+                <em>Klicke auf Bausteine um deinen Context aufzubauen...</em>
+            </div>
+            <button id="clear-btn">Context leeren</button>
+        </section>
     </div>
+
+    <script>
+        const contextParts: string[] = [];
+        const contextDisplay = document.getElementById('context-display')!;
+        const clearBtn = document.getElementById('clear-btn')!;
+
+        function updateDisplay() {
+            if (contextParts.length === 0) {
+                contextDisplay.innerHTML = '<em>Klicke auf Bausteine um deinen Context aufzubauen...</em>';
+            } else {
+                contextDisplay.textContent = contextParts.join(' ');
+            }
+        }
+
+        document.querySelectorAll('.block').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const text = (btn as HTMLElement).dataset.text;
+                if (text) {
+                    contextParts.push(text);
+                    updateDisplay();
+                }
+            });
+        });
+
+        clearBtn.addEventListener('click', () => {
+            contextParts.length = 0;
+            updateDisplay();
+        });
+    </script>
 </body>
 </html>
 
@@ -25,22 +71,57 @@
     body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem;
+        background: #1a1a2e;
         color: white;
     }
     .container {
-        text-align: center;
-        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
     }
     h1 {
-        font-size: 3rem;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
     }
-    p {
-        font-size: 1.2rem;
-        opacity: 0.9;
+    h2 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        opacity: 0.7;
+    }
+    section {
+        margin-bottom: 2rem;
+    }
+    #blocks {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    .block {
+        background: #667eea;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .block:hover {
+        background: #5a6fd6;
+    }
+    #context-display {
+        background: #16213e;
+        padding: 1rem;
+        border-radius: 4px;
+        min-height: 80px;
+        margin-bottom: 0.5rem;
+    }
+    #clear-btn {
+        background: #e74c3c;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    #clear-btn:hover {
+        background: #c0392b;
     }
 </style>
