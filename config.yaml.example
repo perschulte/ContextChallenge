@@ -1,0 +1,36 @@
+# Copy to config.yaml and fill in. config.yaml is gitignored.
+
+portal:
+  login_url: "https://www.pknds.eu/login"   # TODO confirm after first manual login
+  entry_url: ""                              # TODO fill after navigating to the entry form
+
+# Akkreditierte Veranstaltungsnummer der Intervisionsgruppe
+vnr: ""
+
+# DOM-Selektoren. Beim ersten manuellen Login mit DevTools verifizieren und hier eintragen.
+# Bevorzugt: stabile Attribute (name, id, aria-label), keine zerbrechlichen CSS-Pfade.
+selectors:
+  login:
+    username: "input[name='username']"
+    password: "input[name='password']"
+    submit: "button[type='submit']"
+    success_marker: ""   # z.B. "a[href*='logout']" — Indikator dass Login geklappt hat
+  entry:
+    vnr: ""
+    date: ""
+    duration_minutes: ""
+    participant_efn: ""
+    participant_name: ""
+    submit: ""
+    confirmation_marker: ""   # z.B. ".alert-success"
+
+timing:
+  min_action_delay_sec: 1.0
+  max_action_delay_sec: 3.0
+  page_timeout_ms: 15000
+
+paths:
+  input_csv: "data/participants.csv"
+  state_file: "state.json"
+  log_file: "runs/log.jsonl"
+  screenshots_dir: "screenshots"

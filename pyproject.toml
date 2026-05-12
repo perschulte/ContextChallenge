@@ -1,0 +1,33 @@
+[project]
+name = "pkn-punkte"
+version = "0.1.0"
+description = "Personal automation for PKN member-portal CME points submission"
+requires-python = ">=3.11"
+dependencies = [
+    "playwright>=1.48",
+    "python-dotenv>=1.0",
+    "pyyaml>=6.0",
+    "click>=8.1",
+]
+
+[project.optional-dependencies]
+keychain = ["keyring>=24"]
+dev = ["pytest>=8", "ruff>=0.6", "mypy>=1.10"]
+
+[project.scripts]
+pkn-punkte = "pkn_punkte.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
